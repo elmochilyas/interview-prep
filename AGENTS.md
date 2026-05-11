@@ -24,8 +24,8 @@ Core features:
 
 | Layer | Technology | Notes |
 |-------|-----------|-------|
-| Framework | Laravel 11 | PHP 8.2+ |
-| Database | MySQL 8 | Local via XAMPP or Laravel Sail |
+| Framework | Laravel 13 | PHP 8.4+ |
+| Database | MySQL 8 | Local via phpmyadmin |
 | Frontend | Blade templates | No Vue, no React, no Livewire |
 | CSS | Plain CSS or Tailwind CSS | No Bootstrap |
 | HTTP Client | Laravel `Http::` facade | Zero external packages for API calls |
@@ -568,7 +568,7 @@ Review the plan. Correct it if needed. Only then say:
 ### Prompt template for each feature
 
 ```
-Context: I am building InterviewPrep, a Laravel 11 app. Read AGENTS.md before anything else.
+Context: I am building InterviewPrep, a Laravel 13 app. Read AGENTS.md before anything else.
 
 Feature: [feature name]
 Spec file: specs/[filename].md
