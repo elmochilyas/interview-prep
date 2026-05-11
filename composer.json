@@ -11,9 +11,11 @@
     "require": {
         "php": "^8.3",
         "laravel/framework": "^13.7",
+        "laravel/telescope": "*",
         "laravel/tinker": "^3.0"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "*",
         "fakerphp/faker": "^1.23",
         "laravel/breeze": "*",
         "laravel/pail": "^1.2.5",
