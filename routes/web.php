@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DomainController;
+use App\Http\Controllers\ConceptController;
 use Illuminate\Support\Facades\Route;
 
 // Public routes
@@ -21,11 +22,11 @@ Route::middleware('auth')->group(function () {
     // Domain routes
     Route::resource('domains', DomainController::class);
 
-    // Concept routes will be added in feature/concepts-crud
-    // Route::resource('domains.concepts', ConceptController::class);
-    // Route::patch('concepts/{concept}/status', [ConceptController::class, 'updateStatus'])->name('concepts.updateStatus');
-    // Route::get('concepts/archived', [ConceptController::class, 'archived'])->name('concepts.archived');
-    // Route::patch('concepts/{concept}/restore', [ConceptController::class, 'restore'])->name('concepts.restore');
+    // Concept routes
+    Route::get('concepts/archived', [ConceptController::class, 'archived'])->name('concepts.archived');
+    Route::patch('concepts/{concept}/restore', [ConceptController::class, 'restore'])->name('concepts.restore');
+    Route::resource('domains.concepts', ConceptController::class);
+    Route::patch('concepts/{concept}/status', [ConceptController::class, 'updateStatus'])->name('concepts.updateStatus');
 
     // AI generation routes will be added in feature/ai-generation
     // Route::post('concepts/{concept}/generate', [GeneratedQuestionController::class, 'store'])->name('questions.generate');
