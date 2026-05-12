@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreConceptRequest;
 use App\Models\Concept;
 use App\Models\Domain;
 use Illuminate\Http\Request;
@@ -34,9 +35,18 @@ class ConceptController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreConceptRequest $request, Domain $domain)
     {
-        //
+        abort_if($domain->user_id !== auth()->id(), 403);
+
+        $domain->concepts()->create(array_merge(
+            $request->validated(),
+            ['status' => 'to_review']
+        ));
+
+        return redirect()
+            ->route('domains.concepts.index', $domain)
+            ->with('success', 'Concept créé avec succès.');
     }
 
     /**
