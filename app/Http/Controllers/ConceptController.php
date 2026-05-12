@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Concept;
+use App\Models\Domain;
 use Illuminate\Http\Request;
 
 class ConceptController extends Controller
@@ -9,9 +11,16 @@ class ConceptController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request, Domain $domain)
     {
-        //
+        abort_if($domain->user_id !== auth()->id(), 403);
+
+        $concepts = $domain->concepts()
+            ->with('domain')
+            ->filter($request->only(['status', 'difficulty']))
+            ->get();
+
+        return view('concepts.index', compact('domain', 'concepts'));
     }
 
     /**
