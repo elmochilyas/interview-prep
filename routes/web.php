@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DomainController;
 use Illuminate\Support\Facades\Route;
 
 // Public routes
@@ -17,8 +18,8 @@ Route::middleware('auth')->group(function () {
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    // Domain routes will be added in feature/domains-crud
-    // Route::resource('domains', DomainController::class);
+    // Domain routes
+    Route::resource('domains', DomainController::class);
 
     // Concept routes will be added in feature/concepts-crud
     // Route::resource('domains.concepts', ConceptController::class);
