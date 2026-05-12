@@ -242,10 +242,15 @@ public function destroy(Domain $domain)
 
 ---
 
-## Agent Output — What Was Generated
-> *(Fill this in after the agent runs)*
+## Agent Output — what was generated
+- Created `Domain` model with `$fillable` and relationships.
+- Created `create_domains_table` migration with foreign key and cascade delete.
+- Created `DomainController` with all resource methods (except `show`).
+- Implemented `StoreDomainRequest` and `UpdateDomainRequest` for validation.
+- Created Blade views for `index`, `create`, and `edit` using Tailwind CSS and `<x-app-layout>`.
+- Integrated "Mes Domaines" link in the navigation.
 
----
-
-## What I Changed Manually
-> *(Fill this in after the agent runs — what you edited and why)*
+## What I changed manually
+- Converted Blade views from `@extends` to `<x-app-layout>` to match the Breeze layout structure.
+- Ensured `index` method uses `withCount` to prevent N+1 queries.
+- Added ownership checks in controller methods using `abort_if`.
