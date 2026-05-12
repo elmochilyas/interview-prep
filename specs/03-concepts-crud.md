@@ -328,9 +328,14 @@ public function restore(Concept $concept)
 ---
 
 ## Agent Output — What Was Generated
-> *(Fill this in after the agent runs)*
-
----
+- Fully implemented `ConceptController` with nested resource methods (`index`, `create`, `store`, `show`, `edit`, `update`, `destroy`).
+- Implemented specialized actions: `updateStatus` (quick status change), `archived` (listing soft-deleted items), and `restore`.
+- Created 5 Blade views (`index`, `create`, `edit`, `show`, `archived`) using Tailwind CSS and the `<x-app-layout>` component.
+- Implemented status and difficulty filtering in the index view.
+- Wired up quick status update select box with CSRF and method protection.
 
 ## What I Changed Manually
-> *(Fill this in after the agent runs — what you edited and why)*
+- Ensured all views strictly use `$concept->statusLabel` and `$concept->difficultyLabel` for consistency.
+- Corrected route ordering in `web.php` to prevent the archive route from being masked by the nested resource.
+- Applied eager loading (`with('domain')` and `load('generatedQuestions')`) across all methods to ensure zero N+1 queries as verified by Debugbar.
+- Implemented ownership checks (`abort_if`) in every controller method.
