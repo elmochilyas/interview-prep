@@ -7,6 +7,12 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="flex items-center gap-4 mb-6">
+                <a href="{{ route('domains.concepts.index', $domain) }}" class="text-gray-600 hover:text-gray-900">
+                    &larr; Retour à la liste
+                </a>
+            </div>
+
             <h1 class="text-2xl font-bold mb-6">Nouveau Concept</h1>
 
             <div class="bg-white overflow-hidden shadow-sm rounded-lg p-6">
@@ -45,11 +51,11 @@
                         @enderror
                     </div>
 
-                    <div class="flex gap-3">
-                        <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
+                    <div class="flex gap-3 mt-6">
+                        <button type="submit" style="background-color: #4F46E5; color: white; padding: 10px 20px; border-radius: 6px; border: none; cursor: pointer;">
                             Créer
                         </button>
-                        <a href="{{ route('domains.concepts.index', $domain) }}" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">
+                        <a href="{{ route('domains.concepts.index', $domain) }}" style="background-color: #9CA3AF; color: #374151; padding: 10px 20px; border-radius: 6px; text-decoration: none;">
                             Annuler
                         </a>
                     </div>

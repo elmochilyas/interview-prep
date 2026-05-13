@@ -322,9 +322,20 @@ GROQ_API_KEY=
 ---
 
 ## Agent Output — What Was Generated
-> *(Fill this in after the agent runs)*
+
+- Created `app/Services/GroqService.php` with full Groq API integration using `llama-3.1-8b-instant` model
+- Created `app/Http/Controllers/GeneratedQuestionController.php` with `store()` and `destroy()` methods
+- Updated `resources/views/concepts/show.blade.php` with AI generation section (button, history loop, delete forms)
+- Enabled AI routes in `routes/web.php` (uncommented the generate and destroy routes)
+- Created `app/Models/GeneratedQuestion.php` with proper $fillable, $casts, and relationship (already existed)
+- Created `app/Http/Requests/StoreDomainRequest.php` and `UpdateDomainRequest.php` (already existed)
 
 ---
 
 ## What I Changed Manually
-> *(Fill this in after the agent runs — what you edited and why)*
+
+1. **Removed exposed API key from `.env`** — Replaced with empty placeholder for security
+2. **Added profile routes to `routes/auth.php`** — Fixed RouteNotFoundException for `profile.edit`
+3. **Fixed button visibility** — Added inline styles to buttons in domains/create, concepts/create, concepts/index, concepts/show for better visibility
+4. **Changed model from deprecated `llama3-8b-8192` to `llama-3.1-8b-instant`** — The original model was decommissioned by Groq
+5. **Updated model to `llama-3.3-70b-versatile`** — Then changed to `llama-3.1-8b-instant` for best performance/cost ratio

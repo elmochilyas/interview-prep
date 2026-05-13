@@ -37,13 +37,42 @@
                 </div>
             </div>
 
-            <!-- AI Questions Section Placeholder -->
-            <div class="bg-gray-50 border-2 border-dashed border-gray-200 rounded-lg p-12 text-center">
-                <h3 class="text-lg font-medium text-gray-900 mb-2">Questions d'entretien</h3>
-                <p class="text-gray-500 mb-6">Préparez votre entretien en générant des questions basées sur ce concept.</p>
-                <button disabled class="px-4 py-2 bg-gray-300 text-white rounded-md cursor-not-allowed">
-                    Générer des questions (Bientôt disponible)
-                </button>
+            <!-- AI Generation Section -->
+            <div class="bg-white overflow-hidden shadow-sm rounded-lg p-6">
+                <h3 class="text-xl font-semibold mb-4">Questions d'entretien générées</h3>
+
+                <!-- Generate Button -->
+                <form method="POST" action="{{ route('questions.generate', $concept) }}" class="mb-6">
+                    @csrf
+                    <button type="submit" style="background-color: #16A34A; color: white; padding: 12px 24px; border-radius: 6px; border: none; cursor: pointer; font-size: 14px; font-weight: 600;">
+                        Générer 5 questions
+                    </button>
+                </form>
+
+                <!-- History of generations - most recent first -->
+                @forelse ($concept->generatedQuestions->sortByDesc('created_at') as $generation)
+                    <div class="border border-gray-200 rounded-lg p-4 mb-4">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="text-sm text-gray-500">
+                                Généré le {{ $generation->created_at->format('d/m/Y à H:i') }}
+                            </span>
+                            <form method="POST" action="{{ route('questions.destroy', $generation) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-red-600 hover:text-red-800 text-sm">
+                                    Supprimer
+                                </button>
+                            </form>
+                        </div>
+                        <ol class="list-decimal list-inside space-y-2">
+                            @foreach ($generation->questions as $question)
+                                <li class="text-gray-700">{{ $question }}</li>
+                            @endforeach
+                        </ol>
+                    </div>
+                @empty
+                    <p class="text-gray-500">Aucune question générée pour ce concept.</p>
+                @endforelse
             </div>
         </div>
     </div>

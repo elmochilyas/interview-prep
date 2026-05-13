@@ -14,7 +14,7 @@
                     </a>
                     <h1 class="text-2xl font-bold">{{ $domain->name }}</h1>
                 </div>
-                <a href="{{ route('domains.concepts.create', $domain) }}" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
+<a href="{{ route('domains.concepts.create', $domain) }}" style="background-color: #4F46E5; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none;">
                     Nouveau concept
                 </a>
             </div>

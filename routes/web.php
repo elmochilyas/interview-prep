@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DomainController;
 use App\Http\Controllers\ConceptController;
+use App\Http\Controllers\GeneratedQuestionController;
 use Illuminate\Support\Facades\Route;
 
 // Public routes
@@ -28,7 +29,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('domains.concepts', ConceptController::class);
     Route::patch('concepts/{concept}/status', [ConceptController::class, 'updateStatus'])->name('concepts.updateStatus');
 
-    // AI generation routes will be added in feature/ai-generation
-    // Route::post('concepts/{concept}/generate', [GeneratedQuestionController::class, 'store'])->name('questions.generate');
-    // Route::delete('generated-questions/{generatedQuestion}', [GeneratedQuestionController::class, 'destroy'])->name('questions.destroy');
+    // AI generation routes
+    Route::post('concepts/{concept}/generate', [GeneratedQuestionController::class, 'store'])
+         ->name('questions.generate');
+    Route::delete('generated-questions/{generatedQuestion}', [GeneratedQuestionController::class, 'destroy'])
+         ->name('questions.destroy');
 });
