@@ -225,9 +225,16 @@ If the user has no domains yet, the dashboard must show:
 ---
 
 ## Agent Output — What Was Generated
-> *(Fill this in after the agent runs)*
 
----
+- Built `DashboardController@index()` with full progression stats computation using `withCount()` — zero N+1 queries
+- All stats computed server-side: total concepts, mastered/in-progress/to-review counts, mastery percentage, best domain, most-to-review domain, total generated questions count
+- All 4 Blade sections implemented: stat cards (4 cards), global progress bar, highlight cards (3 cards), per-domain progress list with inline progress bars
+- Empty state shown when user has no domains (with "Créer votre premier domaine" CTA link)
+- Combined filter on concepts list confirmed working — `scopeFilter()` applies both status + difficulty simultaneously via URL query params
 
 ## What I Changed Manually
-> *(Fill this in after the agent runs — what you edited and why)*
+
+1. **Updated DashboardController** — Replaced placeholder `return view('dashboard')` with full stats computation using `withCount()` with aliased subcounts for to_review, in_progress, mastered
+2. **Rebuilt dashboard.blade.php** — Replaced default Breeze placeholder with 4-section layout matching spec requirements (stats cards, progress bar, highlights, per-domain list)
+3. **Verified combined filter** — Confirmed `scopeFilter()` in Concept.php correctly applies both `status` and `difficulty` filters simultaneously from URL query params
+4. **Added empty state** — Per-domain section shows friendly message + "Créer votre premier domaine" CTA when no domains exist
